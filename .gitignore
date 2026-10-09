@@ -1,0 +1,8 @@
+# local preview only
+__pycache__/
+*.pyc
+.DS_Store
+
+# working copies - never publish these
+*.bak
+*.bak[0-9]

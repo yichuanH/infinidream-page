@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InfiniDream — From Finite Code to Infinite Worlds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=71">
+</head>
+<body>
+
+<!-- ============ Masthead ============ -->
+<header class="masthead">
+  <img class="logo" src="logo.png?v=3" alt="InfiniDream — from finite code to infinite worlds">
+  <p class="paper-title">Open-Ended Photorealistic 3D Worlds through Procedural Generation</p>
+  <p class="authors">
+    <a href="https://yichuanh.github.io/" target="_blank" rel="noopener">Yi-Chuan Huang</a><sup>1</sup> &middot;
+    <a href="https://chien90190.github.io/" target="_blank" rel="noopener">Hao-Jen Chien</a><sup>1</sup> &middot;
+    <a href="https://brian90709.github.io/" target="_blank" rel="noopener">Zheng-Hui Huang</a><sup>2</sup> &middot;
+    <a href="https://yulunalexliu.github.io/" target="_blank" rel="noopener">Yu-Lun Liu</a><sup>1</sup> &middot;
+    <a href="https://kpzhang93.github.io/" target="_blank" rel="noopener">Kaipeng Zhang</a><sup>3</sup> &middot;
+    <a href="https://lightchaserx.github.io/" target="_blank" rel="noopener">Zhixiang Wang</a><sup>3</sup>
+  </p>
+  <p class="affils">
+    <sup>1</sup>National Yang Ming Chiao Tung University &nbsp;
+    <sup>2</sup>National Taiwan University &nbsp;
+    <sup>3</sup>Alaya Lab
+  </p>
+  <nav class="links">
+    <a class="btn" href="#" aria-disabled="true"><span class="btn-ic">&#128196;</span> Paper</a>
+    <a class="btn" href="#" aria-disabled="true"><span class="btn-ic">&#128187;</span> Code <span class="soon">soon</span></a>
+    <a class="btn btn-ghost" href="#bibtex">BibTeX</a>
+  </nav>
+</header>
+
+<!-- ============ Hero: world build-up ============ -->
+<section class="buildup">
+  <video id="buildup-video" muted loop playsinline autoplay preload="auto"
+         poster="posters/buildup/all.jpg">
+    <source src="videos/buildup/all_av1.mp4?v=2" type="video/mp4; codecs=av01.0.08M.08">
+    <source src="videos/buildup/all.mp4?v=2" type="video/mp4">
+  </video>
+</section>
+
+<!-- ============ Filmstrip ============ -->
+<section class="filmstrip" aria-label="Generated worlds showcase">
+  <div class="strip-track" id="strip-track"></div>
+</section>
+
+<!-- ============ Three beats ============ -->
+<section class="beats wrap">
+  <div class="beat">
+    <span class="beat-k">Worlds in Code</span>
+    <p>The world is a program.<br>Change anything, any time.</p>
+  </div>
+  <div class="beat">
+    <span class="beat-k">Open-ended</span>
+    <p>Generation beyond the predefined.<br>Explore as far as you like.</p>
+  </div>
+  <div class="beat">
+    <span class="beat-k">Diverse</span>
+    <p>Change the seeds, get a forest.<br>Variety that scales to a whole landscape.</p>
+  </div>
+</section>
+
+<!-- ============ Worlds explorer ============ -->
+<section class="band" id="worlds">
+  <div class="wrap">
+    <h2>From a sentence to a <span class="grad">living world</span></h2>
+
+    <div class="chips" id="scene-chips" role="tablist" aria-label="Scenes"></div>
+
+    <div class="scene-stage">
+      <p class="scene-prompt" id="scene-prompt"></p>
+
+      <div class="scene-split">
+        <div class="compare-zone">
+          <div class="compare" id="compare">
+            <video id="sc-ours" muted loop playsinline preload="none"></video>
+            <div class="compare-top" id="compare-top">
+              <video id="sc-before" muted loop playsinline preload="none"></video>
+            </div>
+            <div class="compare-handle" id="compare-handle"><span></span></div>
+            <span class="cmp-label cmp-left">Infinigen</span>
+            <span class="cmp-label cmp-right">InfiniDream</span>
+          </div>
+          <p class="cmp-hint">Move across the frame. Left is the <strong>Infinigen base scene</strong>, right is the <strong>generated world</strong>.</p>
+        </div>
+
+        <div class="scene-side">
+          <div class="scene-assets">
+            <p class="asset-kicker">Coded into this scene</p>
+            <div class="asset-strip" id="asset-strip"></div>
+          </div>
+          <div class="scene-baselines">
+            <p class="asset-kicker">Baselines</p>
+            <div class="baseline-row">
+              <figure class="cell">
+                <video id="sc-claude" muted loop playsinline preload="none"></video>
+                <figcaption class="cap">VLM (Harness)</figcaption>
+              </figure>
+              <figure class="cell">
+                <video id="sc-viga" muted loop playsinline preload="none"></video>
+                <figcaption class="cap">VIGA</figcaption>
+              </figure>
+              <figure class="cell">
+                <video id="sc-c2w" muted loop playsinline preload="none"></video>
+                <figcaption class="cap">Code2Worlds</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Objects ============ -->
+<section class="band band-alt" id="assets">
+  <div class="wrap">
+    <h2>High-fidelity assets <span class="grad">from code</span></h2>
+    <p class="section-lede">Most VLM-written 3D code composes simple primitives with boolean operations, which caps how detailed an asset can get. InfiniDream builds on an existing photorealistic procedural library and <strong>extends it beyond its predefined assets</strong>.</p>
+
+    <div class="obj-scroller">
+      <div class="obj-grid" id="obj-grid"></div>
+    </div>
+    <div class="pager">
+      <button class="pager-btn" id="obj-prev" aria-label="Previous objects">&#8592;</button>
+      <span class="pager-ind" id="obj-ind"></span>
+      <button class="pager-btn" id="obj-next" aria-label="More objects">&#8594;</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ Diversity ============ -->
+<section class="band" id="diversity">
+  <div class="wrap">
+    <h2>New seed, <span class="grad">new variant</span></h2>
+    <p class="section-lede">The same program, re-seeded, <strong>gives a large scene all the variety it needs</strong>.</p>
+
+    <div class="div-scroller">
+      <div class="div-grid" id="div-grid"></div>
+    </div>
+    <div class="pager">
+      <button class="pager-btn" id="div-prev" aria-label="Previous assets">&#8592;</button>
+      <span class="pager-ind" id="div-ind"></span>
+      <button class="pager-btn" id="div-next" aria-label="More assets">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Why SCE ============ -->
+<section class="band band-alt" id="why-sce">
+  <div class="wrap">
+    <h2>Less code, <span class="grad">more control</span></h2>
+    <p class="section-lede">Handing a VLM the entire Infinigen codebase leads to imprecise editing. SCE instead <strong>extracts the key code structures and explicit editing constraints</strong>, turning a large procedural codebase into a manageable editing space.</p>
+    <div class="pipe" id="pipe-sce">
+      <div class="pipe-stage">
+        <img src="pipeline/sce1.webp?v=3" class="is-on" alt="Baseline 1: a VLM modelling from scratch, with no procedural code to build on">
+        <img src="pipeline/sce2.webp?v=3" alt="Baseline 2: Infinigen's own hand-written factories, a fixed catalogue">
+        <img src="pipeline/sce3.webp?v=3" alt="Baseline 3: handing the VLM the entire Infinigen codebase, 833 files">
+        <img src="pipeline/sce4.webp?v=3" alt="Ours: Symbolically Constrained Editing narrows 833 files to 3 editable ones">
+      </div>
+      <ol class="pipe-steps">
+        <li><button type="button" aria-current="true"><span class="pipe-k">1</span>VLM from Scratch<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">2</span>Original Infinigen<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">3</span>Full Infinigen Code<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">4</span>SCE (Ours)<i></i></button></li>
+      </ol>
+      <div class="pipe-caps" aria-live="polite">
+        <p class="is-on">VLM-generated Blender code from scratch produces <strong>simplified geometry</strong>. Shapes are assembled from primitives and boolean operations, which makes photorealism hard to reach.</p>
+        <p>Infinigen reaches photorealism through procedural asset factories that were each handcrafted by a person. Its generative capabilities stay <strong>bounded by predefined asset categories</strong> and procedural rules, so a genuinely new asset type cannot be asked for.</p>
+        <p>A VLM agent harness with full access to all 833 files and 257,301 lines has every capability in reach. Even so, <strong>providing the entire codebase directly leads to imprecise editing</strong>.</p>
+        <p>Symbolically Constrained Editing narrows the same codebase to <strong>the handful of modules that actually decide the shape</strong>, found per asset by depth-limited dependency analysis and handed over with a Code Structure Map and read-only links to the shared algorithms. Existing procedural algorithms are reused under explicit constraints, so <strong>editability and seed-based diversity are preserved</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Method: asset generation ============ -->
+<section class="band" id="method-asset">
+  <div class="wrap">
+    <h2>Precise edits, <span class="grad">procedural infinity</span></h2>
+    <p class="section-lede">SCE generates novel, photorealistic procedural assets with <strong>rich geometric details beyond predefined factories</strong>, while preserving editability and seed-based diversity.</p>
+    <div class="pipe pipe-wide" id="pipe-asset">
+      <div class="pipe-stage">
+        <img src="pipeline/asset1.webp" class="is-on" alt="Stage A: map and retrieve the closest Infinigen factory and build a Factory Brief">
+        <img src="pipeline/asset2.webp" alt="Stage B: the Planner writes a structured Editing Plan">
+        <img src="pipeline/asset3.webp" alt="Stage C: the Coarse Constructor executes the plan inside the declared boundaries">
+        <img src="pipeline/asset4.webp" alt="Stage D: the Reviser refines from renders and a Selector keeps the best candidate">
+      </div>
+      <ol class="pipe-steps">
+        <li><button type="button" aria-current="true"><span class="pipe-k">A</span>Map &amp; Retrieve<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">B</span>Plan<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">C</span>Coarse Constructor<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">D</span>Fine Refinement<i></i></button></li>
+      </ol>
+      <div class="pipe-caps" aria-live="polite">
+        <p class="is-on">From a text description and an optional reference image, the closest Infinigen factory is retrieved and wrapped in a Factory Brief: a map of the code&rsquo;s structure, an Editable Surface of asset-specific modules found by depth-limited dependency analysis, and read-only symlinks to the shared low-level algorithms. <strong>Those boundaries are what stop editing from reaching the procedural machinery underneath.</strong></p>
+        <p>The Planner writes a structured <strong>Editing Plan</strong>. <em>Strategy</em> picks between <em>Tweak</em> (adjust existing parameters and logic), <em>Create</em> (add new procedural functions) and <em>Promote</em> (extend editing rights into protected modules). <em>Locate</em> points at the exact file and line, <em>Edit</em> states what changes there, <em>Rely_on</em> lists the shared algorithms it may read, and <em>Risks</em> flags what could break, such as a changed parameter count.</p>
+        <p>The Coder executes that plan inside the declared boundaries, keeping the factory&rsquo;s entry points and function signatures intact so the population pipeline and seed control still work. It <strong>widens sampling ranges rather than pinning parameters</strong>, so seed-dependent variation survives the edit.</p>
+        <p>The Reviser <strong>renders the result, compares it against the description and reference image, and patches the gaps</strong> in geometry, material and detail with further code edits inside the same boundaries. A Selector keeps the best candidate across iterations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Method: scene assembly ============ -->
+<section class="band band-alt" id="method-scene">
+  <div class="wrap">
+    <h2>Reasons carefully, <span class="grad">places perfectly</span></h2>
+    <p class="section-lede">An end-to-end text-to-world framework combining <strong>semantic scene planning</strong> with <strong>deterministic frustum-guided grid placement</strong>, to generate large-scale, editable 3D worlds.</p>
+    <div class="pipe" id="pipe-main">
+      <div class="pipe-stage">
+        <img src="pipeline/step1.webp" class="is-on" alt="Stage A: a text prompt is matched against the Infinigen scene library to pick a base scene">
+        <img src="pipeline/step2.webp" alt="Stage B: the Director writes a structured Scene Plan of operations, asset specs and placement constraints">
+        <img src="pipeline/step3.webp" alt="Stage C-D: frustum-guided grid placement turns the semantic constraints into filtered 3D candidate positions">
+        <img src="pipeline/step4.webp" alt="Stage E-F: assets are pooled, populated on the fine terrain, animated and rendered">
+      </div>
+      <ol class="pipe-steps">
+        <li><button type="button" aria-current="true"><span class="pipe-k">A</span>Scene Picker<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">B</span>Director<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">C/D</span>Placement<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">E/F</span>Populate &amp; Render<i></i></button></li>
+      </ol>
+      <div class="pipe-caps" aria-live="polite">
+        <p class="is-on">A text prompt goes in, and the Scene Picker retrieves <strong>the Infinigen base scene that best fits it</strong> as a starting point.</p>
+        <p>The Director turns the prompt into a structured Scene Plan of add, replace and delete operations, asset specs, and semantic placement constraints: Hero, Scattering or Swarm placement, seven anchoring types, a surface policy, instance counts and motion. <strong>Every continuous geometric decision is left to deterministic placement.</strong></p>
+        <p>Those constraints become 3D candidates <strong>with no extra VLM call</strong>: the camera&rsquo;s image plane is discretised into a grid and candidates are generated along its rays, by surface intersection for grounded objects and at depth intervals for airborne or submerged ones. Each candidate passes <strong>five deterministic checks</strong>: visibility, collision against motion swept envelopes, inter-instance spacing, surface policy, and projected-area band. The nearest survivor wins. Because the search runs near-to-far under projected-area bounds, <strong>size-aware placement falls out for free</strong>: small objects land close, large ones further away.</p>
+        <p>Assets are pooled before they are populated: the Director&rsquo;s <em>N</em> instances are built from only <em>K</em> procedural prototypes and linked-duplicated, <strong>cutting expensive constructions from <em>N</em> to <em>K</em></strong> while keeping seed-level variety. The pooled assets are then placed by anchoring mode, merged with Infinigen&rsquo;s fine terrain pipeline, animated from the same motion spec that drove collision checking, and rendered.</p>
+      </div>
+    </div>
+</div>
+</section>
+
+<!-- ============ Stat band ============ -->
+<section class="stats">
+  <div class="wrap stats-row">
+    <div class="stat"><span class="stat-n">4/4</span><span class="stat-l">perceptual metrics, best at both object &amp; scene level</span></div>
+    <div class="stat"><span class="stat-n">91%</span><span class="stat-l">human preference for semantic alignment on scenes</span></div>
+    <div class="stat"><span class="stat-n">83%</span><span class="stat-l">overall human preference across scene tasks</span></div>
+    <div class="stat"><span class="stat-n">+10%</span><span class="stat-l">more visual diversity than TRELLIS.2 at comparable semantic alignment</span></div>
+  </div>
+</section>
+
+<!-- ============ BibTeX ============ -->
+<section class="band" id="bibtex">
+  <div class="wrap-narrow">
+    <h2>BibTeX</h2>
+    <pre class="bibtex"><code>@misc{infinidream2027,
+  title  = {InfiniDream: Open-Ended Photorealistic 3D Worlds
+            through Procedural Generation},
+  author = {Huang, Yi-Chuan and Chien, Hao-Jen and Huang, Zheng-Hui
+            and Liu, Yu-Lun and Zhang, Kaipeng and Wang, Zhixiang},
+  year   = {2027}
+}</code></pre>
+  </div>
+</section>
+
+<footer>
+  <p>InfiniDream &middot; from finite code to infinite worlds.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="main.js?v=71"></script>
+</body>
+</html>
