@@ -17,13 +17,24 @@ let governQueued = false;
 
 function govern() {
   governQueued = false;
-  const mid = window.innerHeight / 2;
+  const midY = window.innerHeight / 2;
+  const midX = window.innerWidth / 2;
+  // Distance in both axes, and anything fully off to one side is dropped outright.
+  // The marquee is one long row: every tile shares a vertical position, so ranking on
+  // height alone let the whole playback budget go to tiles scrolled out of sight.
   const ranked = [...visibleVids]
     .map((v) => {
       const r = v.getBoundingClientRect();
-      return { v, d: Math.abs(r.top + r.height / 2 - mid) };
+      if (r.right <= 0 || r.left >= window.innerWidth) return null;
+      const dy = Math.abs(r.top + r.height / 2 - midY);
+      const dx = Math.abs(r.left + r.width / 2 - midX);
+      return { v, d: Math.hypot(dx, dy) };
     })
+    .filter(Boolean)
     .sort((a, b) => a.d - b.d);
+  for (const v of visibleVids) {
+    if (!ranked.some((r) => r.v === v) && !v.paused) v.pause();
+  }
   ranked.forEach(({ v }, i) => {
     if (i < MAX_PLAYING) {
       if (!v.src && v.dataset.src) v.src = v.dataset.src;
@@ -75,8 +86,12 @@ ensurePlays(document.getElementById("buildup-video"));
 io.observe(document.getElementById("buildup-video"));
 
 /* ============ Hero filmstrip ============ */
-const FEATURED = ["sakura_firefly", "coral_reef", "canyon", "snowy_mountain",
-                  "river_seed4", "coast_ginkgo", "under_water", "arctic"];
+const FEATURED = [
+  "sakura_firefly", "coral_reef", "canyon", "snowy_mountain", "river_seed4",
+  "coast_ginkgo", "under_water", "arctic", "plain_lily", "desert",
+  "mountain_seed1", "coast", "forest_seed2", "river", "cliff",
+  "plain_sunflower", "coast_cypress", "desert_s3", "river_s3_japan", "mountain",
+];
 (function buildStrip() {
   const track = document.getElementById("strip-track");
   // duplicated once for the seamless marquee loop
