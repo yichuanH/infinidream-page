@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=75">
+<link rel="stylesheet" href="style.css?v=76">
 </head>
 <body>
 
@@ -157,24 +157,24 @@
   <div class="wrap">
     <h2>Less code, <span class="grad">more control</span></h2>
     <p class="section-lede">Handing a VLM the entire Infinigen codebase leads to imprecise editing. SCE instead <strong>extracts the key code structures and explicit editing constraints</strong>, turning a large procedural codebase into a manageable editing space.</p>
-    <div class="pipe" id="pipe-sce">
+    <div class="pipe" id="pipe-sce" data-start="3">
       <div class="pipe-stage">
-        <img src="pipeline/sce1.webp?v=3" class="is-on" alt="Baseline 1: a VLM modelling from scratch, with no procedural code to build on">
-        <img src="pipeline/sce2.webp?v=3" alt="Baseline 2: Infinigen's own hand-written factories, a fixed catalogue">
-        <img src="pipeline/sce3.webp?v=3" alt="Baseline 3: handing the VLM the entire Infinigen codebase, 833 files">
-        <img src="pipeline/sce4.webp?v=3" alt="Ours: Symbolically Constrained Editing narrows 833 files to 3 editable ones">
+        <img src="pipeline/sce1.webp?v=4" alt="Baseline 1: a VLM modelling from scratch, with no procedural code to build on">
+        <img src="pipeline/sce2.webp?v=4" alt="Baseline 2: Infinigen's own hand-written factories, a fixed catalogue">
+        <img src="pipeline/sce3.webp?v=4" alt="Baseline 3: handing the VLM the entire Infinigen codebase, 833 files">
+        <img src="pipeline/sce4.webp?v=4" class="is-on" alt="Ours: Symbolically Constrained Editing narrows 833 files to 3 editable ones">
       </div>
       <ol class="pipe-steps">
-        <li><button type="button" aria-current="true"><span class="pipe-k">1</span>VLM from Scratch<i></i></button></li>
+        <li><button type="button"><span class="pipe-k">1</span>VLM from Scratch<i></i></button></li>
         <li><button type="button"><span class="pipe-k">2</span>Original Infinigen<i></i></button></li>
         <li><button type="button"><span class="pipe-k">3</span>Full Infinigen Code<i></i></button></li>
-        <li><button type="button"><span class="pipe-k">4</span>SCE (Ours)<i></i></button></li>
+        <li><button type="button" aria-current="true"><span class="pipe-k">4</span>SCE (Ours)<i></i></button></li>
       </ol>
       <div class="pipe-caps" aria-live="polite">
-        <p class="is-on">VLM-generated Blender code from scratch produces <strong>simplified geometry</strong>. Shapes are assembled from primitives and boolean operations, which makes photorealism hard to reach.</p>
+        <p>VLM-generated Blender code from scratch produces <strong>simplified geometry</strong>. Shapes are assembled from primitives and boolean operations, which makes photorealism hard to reach.</p>
         <p>Infinigen reaches photorealism through procedural asset factories that were each handcrafted by a person. Its generative capabilities stay <strong>bounded by predefined asset categories</strong> and procedural rules, so a genuinely new asset type cannot be asked for.</p>
         <p>A VLM agent harness with full access to all 833 files and 257,301 lines has every capability in reach. Even so, <strong>providing the entire codebase directly leads to imprecise editing</strong>.</p>
-        <p>Symbolically Constrained Editing narrows the same codebase to <strong>the handful of modules that actually decide the shape</strong>, found per asset by depth-limited dependency analysis and handed over with a Code Structure Map and read-only links to the shared algorithms. Existing procedural algorithms are reused under explicit constraints, so <strong>editability and seed-based diversity are preserved</strong>.</p>
+        <p class="is-on">Symbolically Constrained Editing narrows the same codebase to <strong>the handful of modules that actually decide the shape</strong>, found per asset by depth-limited dependency analysis and handed over with a Code Structure Map and read-only links to the shared algorithms. Existing procedural algorithms are reused under explicit constraints, so <strong>editability and seed-based diversity are preserved</strong>.</p>
       </div>
     </div>
   </div>
@@ -265,6 +265,6 @@
 </footer>
 
 <script src="data.js"></script>
-<script src="main.js?v=75"></script>
+<script src="main.js?v=76"></script>
 </body>
 </html>

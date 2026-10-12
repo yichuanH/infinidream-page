@@ -298,7 +298,10 @@ document.querySelectorAll(".pipe").forEach((root) => {
   const btns = [...root.querySelectorAll(".pipe-steps button")];
   const caps = [...root.querySelectorAll(".pipe-caps p")];
   const slow = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let i = 0, timer = null, pinned = false, onScreen = false;
+  // data-start lets a component open on something other than its first panel: the
+  // why-SCE figure leads with the result, then walks back through the three baselines.
+  let i = Number(root.dataset.start || 0) % Math.max(imgs.length, 1);
+  let timer = null, pinned = false, onScreen = false;
 
   function show(n) {
     i = (n + imgs.length) % imgs.length;
@@ -332,5 +335,5 @@ document.querySelectorAll(".pipe").forEach((root) => {
     for (const e of es) { onScreen = e.isIntersecting; onScreen ? play() : stop(); }
   }, { threshold: 0.01 }).observe(root);
 
-  show(0);
+  show(i);
 });
