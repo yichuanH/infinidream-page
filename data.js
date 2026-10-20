@@ -545,70 +545,70 @@ const DATA = {
  ],
  "objects": [
   {
-   "id": "chameleon_rainbow",
-   "label": "Rainbow Chameleon"
+    "id": "striped_okapi",
+    "label": "Striped Okapi"
   },
   {
-   "id": "striped_okapi",
-   "label": "Striped Okapi"
+    "id": "peacock_mantis_shrimp",
+    "label": "Peacock Mantis Shrimp"
   },
   {
-   "id": "peacock_mantis_shrimp",
-   "label": "Peacock Mantis Shrimp"
+    "id": "blue_jacaranda_tree",
+    "label": "Blue Jacaranda Tree"
   },
   {
-   "id": "red_handfish",
-   "label": "Red Handfish"
+    "id": "alpine_hare",
+    "label": "Alpine Hare"
   },
   {
-   "id": "blue_jacaranda_tree",
-   "label": "Blue Jacaranda Tree"
+    "id": "hummingbird",
+    "label": "Hummingbird"
   },
   {
-   "id": "alpine_hare",
-   "label": "Alpine Hare"
+    "id": "peacock",
+    "label": "Peacock"
   },
   {
-   "id": "hummingbird",
-   "label": "Hummingbird"
+    "id": "reindeer",
+    "label": "Reindeer"
   },
   {
-   "id": "peacock",
-   "label": "Peacock"
+    "id": "red_panda",
+    "label": "Red Panda"
   },
   {
-   "id": "reindeer",
-   "label": "Reindeer"
+    "id": "musk_ox",
+    "label": "Musk Ox"
   },
   {
-   "id": "red_panda",
-   "label": "Red Panda"
+    "id": "bee",
+    "label": "Bee"
   },
   {
-   "id": "musk_ox",
-   "label": "Musk Ox"
+    "id": "slipper_lobster",
+    "label": "Slipper Lobster"
   },
   {
-   "id": "bee",
-   "label": "Bee"
+    "id": "coral_blossom_bush",
+    "label": "Coral Blossom Bush"
   },
   {
-   "id": "slipper_lobster",
-   "label": "Slipper Lobster"
+    "id": "flowering_globular_cactus",
+    "label": "Flowering Globular Cactus"
   },
   {
-   "id": "coral_blossom_bush",
-   "label": "Coral Blossom Bush"
+    "id": "white_birch_grove_tree",
+    "label": "White Birch Grove"
   },
   {
-   "id": "flowering_globular_cactus",
-   "label": "Flowering Globular Cactus"
+    "id": "chameleon_rainbow",
+    "label": "Rainbow Chameleon"
   },
   {
-   "id": "white_birch_grove_tree",
-   "label": "White Birch Grove"
+    "id": "red_handfish",
+    "label": "Red Handfish"
   }
- ],
+],
  "diversity": [
   {
    "id": "koi_fish",
